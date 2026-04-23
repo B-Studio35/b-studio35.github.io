@@ -5,81 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B Studio | Projeler</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #050505; color: #fff; padding: 40px 5%; }
-        
-        .header { margin-bottom: 50px; text-align: left; }
-        .header a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        .header a:hover { color: #0070f3; }
-        .header h1 { font-size: 2.5rem; margin-top: 20px; }
+        /* Ana Tema ve Akış */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #050505; color: #fff; overflow-x: hidden; min-height: 100vh; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+        /* Arka Plan Işıkları (Ana Sayfayla Uyumlu) */
+        .aurora-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(0, 112, 243, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 40%);
+            z-index: -1; filter: blur(80px);
         }
 
+        /* Üst Başlık Alanı */
+        .header {
+            padding: 60px 10% 40px 10%;
+            text-align: left;
+        }
+        .header a { 
+            color: #888; text-decoration: none; font-size: 14px; 
+            transition: 0.3s; display: inline-block; margin-bottom: 20px;
+        }
+        .header a:hover { color: #0070f3; transform: translateX(-5px); }
+        .header h1 { 
+            font-size: 3rem; font-weight: 900; 
+            background: linear-gradient(to right, #fff, #444);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Proje Grid Sistemi */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 10% 100px 10%;
+        }
+
+        /* Kart Tasarımı (Neon & Cam) */
         .project-card {
-            background: #111;
-            border: 1px solid #222;
-            padding: 30px;
-            border-radius: 12px;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: hidden;
         }
 
         .project-card:hover {
-            border-color: #0070f3;
-            transform: translateY(-5px);
-            background: #161616;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 112, 243, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .status-tag {
-            font-size: 10px;
-            background: rgba(0, 112, 243, 0.2);
-            color: #0070f3;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        h2 { margin: 15px 0 10px 0; font-size: 20px; }
-        p { color: #888; font-size: 14px; line-height: 1.6; }
-
-        .btn-link {
+        /* Rozetler */
+        .badge {
             display: inline-block;
-            margin-top: 20px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .badge-blue { background: rgba(0, 112, 243, 0.15); color: #0070f3; }
+        .badge-purple { background: rgba(121, 40, 202, 0.15); color: #7928ca; }
+        .badge-green { background: rgba(0, 255, 127, 0.1); color: #00ff7f; }
+
+        h2 { font-size: 24px; margin-bottom: 15px; letter-spacing: -0.5px; }
+        p { color: #888; font-size: 15px; line-height: 1.7; margin-bottom: 25px; }
+
+        /* Link Stili */
+        .view-link {
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 600;
-            border-bottom: 1px solid #0070f3;
-            padding-bottom: 2px;
+            font-size: 14px;
+            border-bottom: 2px solid #0070f3;
+            padding-bottom: 4px;
+            transition: 0.3s;
         }
+        .view-link:hover { letter-spacing: 1px; border-color: #7928ca; }
+
     </style>
 </head>
 <body>
 
+    <div class="aurora-bg"></div>
+
     <div class="header">
         <a href="/">← Ana Sayfaya Dön</a>
-        <h1>Projelerimiz</h1>
+        <h1>Tüm Projeler</h1>
     </div>
 
     <div class="grid">
         <div class="project-card">
-            <span class="status-tag">Geliştiriliyor</span>
+            <span class="badge badge-purple">Geliştiriliyor</span>
             <h2>B OS</h2>
-            <p>Web tabanlı, modern ve minimalist bir işletim sistemi simülasyonu. Kullanıcı deneyimini tarayıcıya taşıyoruz.</p>
-            <a href="/b-os/" class="btn-link">Detayları Gör</a>
+            <p>Standartların ötesinde bir işletim sistemi deneyimi. Güçlü, hızlı ve tamamen size özel.</p>
+            <a href="/b-os/" class="view-link">Sistemi İncele</a>
         </div>
 
         <div class="project-card">
-            <span class="status-tag">Yayında</span>
+            <span class="badge badge-green">Yeni</span>
+            <h2>B Macro</h2>
+            <p>Tekrarlayan görevleri otomatiğe bağlayın. Oyunlarda veya iş akışlarında hızınıza hız katan profesyonel makro çözümü.</p>
+            <a href="#" class="view-link">Uygulamayı Gör</a>
+        </div>
+
+        <div class="project-card">
+            <span class="badge badge-blue">Yayında</span>
             <h2>B Updater</h2>
-            <p>Yazılım güncellemelerini ve dosya senkronizasyonunu yöneten hızlı, güvenli bir masaüstü aracı.</p>
-            <a href="#" class="btn-link">İndir (v1.0)</a>
+            <p>Yazılım paketlerinizi tek tıkla en güncel sürüme taşıyan, hafif ve kararlı güncelleme aracı.</p>
+            <a href="#" class="view-link">Dosyalara Git</a>
         </div>
     </div>
 
