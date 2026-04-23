@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B Studio | Hakkımızda</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #050505; color: #fff; overflow-x: hidden; }
+
+        /* Arka Plan Aurora */
+        .aurora-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 50% -20%, rgba(0, 112, 243, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(121, 40, 202, 0.1) 0%, transparent 40%);
+            z-index: -1; filter: blur(60px);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
+        
+        .back-link { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .back-link:hover { color: #0070f3; }
+
+        .profile-section { text-align: center; margin-top: 40px; }
+        .profile-title { 
+            font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #0070f3);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .alias { color: #0070f3; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+
+        .content-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px; border-radius: 24px; line-height: 1.8; color: #ccc;
+            font-size: 1.1rem; margin-bottom: 50px;
+        }
+
+        .content-box strong { color: #fff; }
+
+        /* Sosyal Medya Kartları */
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .social-card {
+            padding: 25px; border-radius: 16px; text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .kick { background: rgba(83, 252, 24, 0.1); color: #53fc18; border-color: rgba(83, 252, 24, 0.2); }
+        .kick:hover { background: #53fc18; color: #000; box-shadow: 0 0 30px rgba(83, 252, 24, 0.3); }
+
+        .youtube { background: rgba(255, 0, 0, 0.1); color: #ff0000; border-color: rgba(255, 0, 0, 0.2); }
+        .youtube:hover { background: #ff0000; color: #fff; box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
+
+        footer { text-align: center; margin-top: 100px; color: #555; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-bg"></div>
+
+    <div class="container">
+        <a href="/" class="back-link">← Ana Sayfaya Dön</a>
+
+        <div class="profile-section">
+            <h1 class="profile-title">B Studio'nun Arkasındaki Vizyon</h1>
+            <p class="alias">Tokberke35</p>
+
+            <div class="content-box">
+                <p>Merhaba! Ben <strong>Tokberke35</strong>. Dijital dünyanın hem mutfağında hem de sahnesinde yer alan bir geliştirici ve içerik üreticisiyim.</p>
+                <br>
+                <p><strong>B Studio</strong> çatısı altında, kullanıcı deneyimini ön planda tutan yazılımlar, sistem araçları ve yenilikçi projeler geliştiriyorum. Kod yazmak benim için sadece bir iş değil, sınırları zorladığım bir yaratım süreci. Özellikle <strong>B OS</strong> ve <strong>B Updater</strong> gibi projelerle teknolojiye kendi imzamı atmayı hedefliyorum.</p>
+                <br>
+                <p>Yazılım geliştirme süreçlerimin yanı sıra, YouTube ve Kick platformlarında yayınlar yaparak topluluğumla bir araya geliyor, teknoloji ve eğlenceyi harmanlıyorum.</p>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://kick.com/tokberke35" target="_blank" class="social-card kick">KICK'TE İZLE</a>
+                <a href="https://youtube.com/@tokberke35" target="_blank" class="social-card youtube">YOUTUBE KANALI</a>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 B Studio. Gizlilik ve Performans Odaklı Geliştirme.
+        </footer>
+    </div>
+
+</body>
+</html>
