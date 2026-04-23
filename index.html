@@ -3,57 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B Studio | Official</title>
+    <title>B Studio | Geleceği Kodla</title>
     <style>
-        body {
-            background-color: #0f0f0f;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+        /* Genel Ayarlar */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #121212; color: #ffffff; line-height: 1.6; overflow-x: hidden; }
+
+        /* Üst Menü (Navbar) - Microsoft Tarzı */
+        header { 
+            background-color: rgba(20, 20, 20, 0.95); 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #333; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
-        h1 {
-            color: #0078d4;
-            font-size: 4rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+        .logo { font-size: 24px; font-weight: 800; color: #0078d4; text-decoration: none; letter-spacing: 2px; }
+        nav ul { list-style: none; display: flex; align-items: center; gap: 30px; }
+        nav ul li { position: relative; padding: 10px 0; }
+        nav ul li a { color: #e0e0e0; text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+        nav ul li a:hover { color: #0078d4; }
+
+        /* Açılır Menü (Apps Kısmı) */
+        .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: -20px; 
+            background-color: #1a1a1a; 
+            min-width: 220px; 
+            border: 1px solid #333; 
+            border-radius: 6px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+            overflow: hidden;
         }
-        p {
-            font-size: 1.2rem;
-            color: #aaaaaa;
-            margin-bottom: 30px;
+        nav ul li:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+        .dropdown-menu li { padding: 0; border-bottom: 1px solid #2a2a2a; }
+        .dropdown-menu li:last-child { border-bottom: none; }
+        .dropdown-menu li a { display: block; padding: 15px 20px; font-size: 14px; }
+        .dropdown-menu li a:hover { background-color: #2a2a2a; color: #fff; }
+
+        /* Animasyon */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Ana Ekran (Hero Section) */
+        .hero { 
+            min-height: 80vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background: radial-gradient(circle at center, #1e1e1e 0%, #121212 100%);
+            padding: 0 20px;
         }
-        .btn {
-            background-color: #0078d4;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid transparent;
+        .hero h1 { font-size: 4.5rem; font-weight: bold; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero h1 span { color: #0078d4; }
+        .hero p { font-size: 1.2rem; color: #aaaaaa; max-width: 600px; margin-bottom: 40px; }
+        
+        .btn { 
+            background-color: #0078d4; 
+            color: white; 
+            padding: 16px 40px; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-size: 1.1rem;
+            font-weight: 600; 
+            transition: all 0.3s ease; 
         }
-        .btn:hover {
-            background-color: transparent;
-            border-color: #0078d4;
-            box-shadow: 0 0 20px #0078d4;
+        .btn:hover { background-color: #005a9e; box-shadow: 0 0 20px rgba(0, 120, 212, 0.4); transform: translateY(-2px); }
+
+        /* Hakkımızda Bölümü */
+        .about { padding: 100px 50px; background-color: #181818; text-align: center; }
+        .about h2 { font-size: 2.5rem; color: #ffffff; margin-bottom: 30px; }
+        .about .content-box { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background-color: #222; 
+            padding: 40px; 
+            border-radius: 8px; 
+            border: 1px solid #333;
         }
-        .status {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #555;
-        }
+        .about p { font-size: 1.1rem; color: #cccccc; line-height: 1.8; margin-bottom: 20px; }
+        .about p:last-child { margin-bottom: 0; }
+
+        /* Footer */
+        footer { text-align: center; padding: 30px; background-color: #0f0f0f; color: #666; font-size: 0.9rem; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
-    <h1>B STUDIO</h1>
-    <p>Yazılım, Tasarım ve İçerik Üretim Merkezi</p>
-    <a href="#" class="btn">B UPDATER İNDİR (V1.0)</a>
-    <div class="status">Sistem Durumu: Çevrimiçi | İzmir, Bornova</div>
+
+    <header>
+        <a href="#" class="logo">B STUDIO</a>
+        <nav>
+            <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li>
+                    <a href="#">Uygulamalar (Apps) ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">🚀 B Updater (Yayında)</a></li>
+                        <li><a href="#">💻 B OS (Yakında)</a></li>
+                        <li><a href="#">🚗 B Mods (Geliştirme Aşamasında)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">Hakkımızda</a></li>
+                <li><a href="#">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Sınırları <span>Kaldır.</span></h1>
+        <p>B Studio; yenilikçi yazılım projeleri, gelişmiş simülasyon modları ve özel sistem çözümleri sunan yeni nesil geliştirici platformudur.</p>
+        <a href="#" class="btn" id="downloadBtn">B UPDATER İNDİR (v1.0)</a>
+    </section>
+
+    <section class="about" id="about">
+        <h2>Neden B Studio?</h2>
+        <div class="content-box">
+            <p>B Studio olarak sıradan yazılımların ötesine geçmeyi hedefliyoruz. Amacımız, kullanıcılara sadece bir program değil, pürüzsüz ve optimize edilmiş bir "deneyim" sunmaktır.</p>
+            <p>Geliştirmekte olduğumuz web tabanlı işletim sistemi simülasyonu <strong>B OS</strong>'tan, oyun dünyasındaki limitleri zorlayan ultra gerçekçi modifikasyon projelerine kadar her detayda performansı ve şık tasarımı ön planda tutuyoruz. Geleceğin araçlarını bugünden kodluyoruz.</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 B Studio. Tüm kodlar ve tasarımlar özenle hazırlanmıştır.
+    </footer>
+
+    <script>
+        const btn = document.getElementById('downloadBtn');
+        btn.addEventListener('click', function(e) {
+            if(this.getAttribute('href') === "#") {
+                e.preventDefault();
+                const originalText = this.innerHTML;
+                this.innerHTML = "SİSTEM BAĞLANTISI KURULUYOR...";
+                this.style.backgroundColor = "#ff8c00"; // Turuncu uyarı rengi
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.backgroundColor = "#0078d4";
+                }, 2500);
+            }
+        });
+    </script>
 </body>
 </html>
