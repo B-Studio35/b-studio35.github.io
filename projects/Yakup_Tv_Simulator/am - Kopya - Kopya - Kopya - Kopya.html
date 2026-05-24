@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scooter Rush 3D</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: Arial, sans-serif;
+    }
+
+    #ui {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      z-index: 10;
+      font-size: 24px;
+    }
+
+    #gameover {
+      position: absolute;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      background: rgba(0,0,0,0.7);
+      z-index: 20;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="ui" style="display:none;">
+  Skor: <span id="score">0</span><br>
+  Level: <span id="level">1</span><br>
+  High Score: <span id="highscore">0</span>
+</div>
+
+<div id="menu" style="position:absolute; inset:0; display:flex; justify-content:center; align-items:center; flex-direction:column; background:rgba(0,0,0,0.85); z-index:30; color:white;">
+  <h1 style="font-size:64px; margin-bottom:20px;">SCOOTER RUSH</h1>
+  <button id="startBtn" style="padding:20px 40px; font-size:28px; cursor:pointer; border:none; border-radius:14px;">OYUNA BAŞLA</button>
+  <div style="margin-top:20px; font-size:24px; opacity:0.8;">
+    Kontroller: A / D veya ← →
+  </div>
+</div>
+
+<div id="gameover">
+  <div>OYUN BİTTİ</div>
+  <div id="finalScore" style="font-size:32px; margin-top:20px;">Skor: 0</div>
+  <div id="finalHigh" style="font-size:26px; margin-top:10px;">High Score: 0</div>
+  <button onclick="location.reload()" style="margin-top:25px; padding:16px 30px; font-size:24px; border:none; border-radius:12px; cursor:pointer;">
+    YENİDEN BAŞLAT
+  </button>
+</div>
+  <div style="font-size:24px; margin-top:10px;">F5 ile yeniden başlat</div>
+</div>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js';
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x000000, 20, 90);
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// LIGHTS
+const ambient = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambient);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 10, 5);
+scene.add(light);
+
+// ROAD
+const roadGeometry = new THREE.PlaneGeometry(12, 200);
+const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+const road = new THREE.Mesh(roadGeometry, roadMaterial);
+road.rotation.x = -Math.PI / 2;
+scene.add(road);
+
+// ROAD LINES
+for (let i = -100; i < 100; i += 8) {
+  const lineGeo = new THREE.BoxGeometry(0.3, 0.1, 3);
+  const lineMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const line = new THREE.Mesh(lineGeo, lineMat);
+
+  line.position.set(0, 0.05, i);
+  scene.add(line);
+}
+
+// PLAYER SCOOTER MODEL
+const player = new THREE.Group();
+
+// deck
+const deck = new THREE.Mesh(
+  new THREE.BoxGeometry(1.2, 0.2, 3),
+  new THREE.MeshStandardMaterial({ color: 0x222222 })
+);
+deck.position.y = 0.3;
+player.add(deck);
+
+// handle pole
+const pole = new THREE.Mesh(
+  new THREE.BoxGeometry(0.15, 2, 0.15),
+  new THREE.MeshStandardMaterial({ color: 0x111111 })
+);
+pole.position.set(0, 1.2, -1);
+player.add(pole);
+
+// handle bar
+const handle = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 0.12, 0.12),
+  new THREE.MeshStandardMaterial({ color: 0x111111 })
+);
+handle.position.set(0, 2.1, -1);
+player.add(handle);
+
+// rider body
+const riderBody = new THREE.Mesh(
+  new THREE.BoxGeometry(0.5, 0.8, 0.4),
+  new THREE.MeshStandardMaterial({ color: 0x000000 })
+);
+riderBody.position.set(0, 1.2, -0.4);
+player.add(riderBody);
+
+// rider head
+const riderHead = new THREE.Mesh(
+  new THREE.SphereGeometry(0.28),
+  new THREE.MeshStandardMaterial({ color: 0xffcc99 })
+);
+riderHead.position.set(0, 1.9, -0.4);
+player.add(riderHead);
+
+// wheels
+function createWheel(x, z) {
+  const wheel = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.35, 0.35, 0.2, 20),
+    new THREE.MeshStandardMaterial({ color: 0x050505 })
+  );
+
+  wheel.rotation.z = Math.PI / 2;
+  wheel.position.set(x, 0.2, z);
+
+  player.add(wheel);
+}
+
+createWheel(0, -1.2);
+createWheel(0, 1.2);
+
+player.position.set(0, 0.2, 8);
+scene.add(player);
+
+// CAMERA THIRD PERSON
+camera.position.set(0, 4, 14);
+camera.lookAt(player.position);
+
+// CONTROLS
+const keys = {};
+
+document.addEventListener('keydown', (e) => {
+  keys[e.key] = true;
+});
+
+document.addEventListener('keyup', (e) => {
+  keys[e.key] = false;
+});
+
+// ENEMIES
+const cars = [];
+
+function spawnCar() {
+  const enemy = new THREE.Mesh(
+    new THREE.BoxGeometry(1.8, 1.2, 3),
+    new THREE.MeshStandardMaterial({
+      color: Math.random() * 0xffffff
+    })
+  );
+
+  enemy.position.x = [-4, 0, 4][Math.floor(Math.random() * 3)];
+  enemy.position.y = 0.6;
+  enemy.position.z = -80;
+
+  scene.add(enemy);
+  cars.push(enemy);
+}
+
+let spawnDelay = 800;
+let spawner = setInterval(spawnCar, spawnDelay);
+
+// SCORE
+let score = 0;
+let level = 1;
+let enemySpeed = 0.8;
+
+const scoreText = document.getElementById('score');
+const levelText = document.getElementById('level');
+const highText = document.getElementById('highscore');
+
+let highScore = localStorage.getItem('scooterHighScore') || 0;
+highText.innerText = highScore;
+let gameOver = false;
+let gameStarted = false;
+
+function endGame() {
+  gameOver = true;
+  document.getElementById('gameover').style.display = 'flex';
+  document.getElementById('finalScore').innerText = 'Skor: ' + score;
+
+  if(score > highScore){
+    highScore = score;
+    localStorage.setItem('scooterHighScore', highScore);
+  }
+
+  document.getElementById('finalHigh').innerText = 'High Score: ' + highScore;
+}
+
+// ANIMATE
+document.getElementById('startBtn').addEventListener('click', () => {
+  gameStarted = true;
+  document.getElementById('menu').style.display = 'none';
+  document.getElementById('ui').style.display = 'block';
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  if (gameStarted && !gameOver) {
+
+    // PLAYER MOVE
+    let moveSpeed = 0.15;
+
+    if (keys['a'] || keys['A'] || keys['ArrowLeft']) {
+      player.position.x -= moveSpeed;
+    }
+
+    if (keys['d'] || keys['D'] || keys['ArrowRight']) {
+      player.position.x += moveSpeed;
+    }
+
+    player.position.x = Math.max(-4.5, Math.min(4.5, player.position.x));
+
+    // CAMERA FOLLOW
+    camera.position.x = player.position.x;
+    camera.lookAt(player.position.x, 0, player.position.z - 10);
+
+    // ENEMY MOVE
+    cars.forEach((car, index) => {
+      car.position.z += enemySpeed;
+
+      // COLLISION
+      if (
+        Math.abs(car.position.z - player.position.z) < 2.2 &&
+        Math.abs(car.position.x - player.position.x) < 1.2
+      ) {
+        endGame();
+      }
+
+      // REMOVE
+      if (car.position.z > 20) {
+        scene.remove(car);
+        cars.splice(index, 1);
+
+        score++;
+        scoreText.innerText = score;
+
+        if(score % 10 === 0){
+          level++;
+          levelText.innerText = level;
+
+          enemySpeed += 0.15;
+
+          clearInterval(spawner);
+          spawnDelay = Math.max(250, spawnDelay - 80);
+          spawner = setInterval(spawnCar, spawnDelay);
+        }
+      }
+    });
+  }
+
+  renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+
+</body>
+</html>
