@@ -4,90 +4,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B Studio | Projeler</title>
+
     <style>
-        /* Ana Tema ve Akış */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: #050505; color: #fff; overflow-x: hidden; min-height: 100vh; }
 
-        /* Arka Plan Işıkları (Ana Sayfayla Uyumlu) */
-        .aurora-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 80% 20%, rgba(0, 112, 243, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 20% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 40%);
-            z-index: -1; filter: blur(80px);
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Inter',sans-serif;
         }
 
-        /* Üst Başlık Alanı */
-        .header {
-            padding: 60px 10% 40px 10%;
-            text-align: left;
-        }
-        .header a { 
-            color: #888; text-decoration: none; font-size: 14px; 
-            transition: 0.3s; display: inline-block; margin-bottom: 20px;
-        }
-        .header a:hover { color: #0070f3; transform: translateX(-5px); }
-        .header h1 { 
-            font-size: 3rem; font-weight: 900; 
-            background: linear-gradient(to right, #fff, #444);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        body{
+            background-color:#050505;
+            color:#fff;
+            overflow-x:hidden;
+            min-height:100vh;
         }
 
-        /* Proje Grid Sistemi */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 20px 10% 100px 10%;
+        .aurora-bg{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+
+            background:
+                radial-gradient(circle at 80% 20%, rgba(0,112,243,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(121,40,202,0.15) 0%, transparent 40%);
+
+            z-index:-1;
+
+            filter:blur(80px);
         }
 
-        /* Kart Tasarımı (Neon & Cam) */
-        .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 24px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+        .header{
+            padding:60px 10% 40px 10%;
+            text-align:left;
         }
 
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 112, 243, 0.4);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .header a{
+            color:#888;
+            text-decoration:none;
+            font-size:14px;
+
+            transition:0.3s;
+
+            display:inline-block;
+
+            margin-bottom:20px;
         }
 
-        /* Rozetler */
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .header a:hover{
+            color:#0070f3;
+            transform:translateX(-5px);
         }
-        .badge-blue { background: rgba(0, 112, 243, 0.15); color: #0070f3; }
-        .badge-purple { background: rgba(121, 40, 202, 0.15); color: #7928ca; }
-        .badge-green { background: rgba(0, 255, 127, 0.1); color: #00ff7f; }
 
-        h2 { font-size: 24px; margin-bottom: 15px; letter-spacing: -0.5px; }
-        p { color: #888; font-size: 15px; line-height: 1.7; margin-bottom: 25px; }
+        .header h1{
+            font-size:3rem;
+            font-weight:900;
 
-        /* Link Stili */
-        .view-link {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-bottom: 2px solid #0070f3;
-            padding-bottom: 4px;
-            transition: 0.3s;
+            background:
+            linear-gradient(to right,#fff,#444);
+
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
         }
-        .view-link:hover { letter-spacing: 1px; border-color: #7928ca; }
+
+        .grid{
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fill,minmax(350px,1fr));
+
+            gap:30px;
+
+            padding:20px 10% 100px 10%;
+        }
+
+        .project-card{
+            background:rgba(255,255,255,0.02);
+
+            border:1px solid rgba(255,255,255,0.05);
+
+            padding:40px;
+
+            border-radius:24px;
+
+            transition:
+            0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+
+            position:relative;
+        }
+
+        .project-card:hover{
+            background:rgba(255,255,255,0.05);
+
+            border-color:rgba(0,112,243,0.4);
+
+            transform:translateY(-10px);
+
+            box-shadow:
+            0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .game-card:hover{
+            border-color:rgba(0,200,255,0.5);
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.4),
+                0 0 40px rgba(0,140,255,0.15);
+        }
+
+        .badge{
+            display:inline-block;
+
+            padding:6px 12px;
+
+            border-radius:8px;
+
+            font-size:10px;
+            font-weight:800;
+
+            letter-spacing:1px;
+
+            text-transform:uppercase;
+
+            margin-bottom:20px;
+        }
+
+        .badge-blue{
+            background:rgba(0,112,243,0.15);
+            color:#0070f3;
+        }
+
+        .badge-purple{
+            background:rgba(121,40,202,0.15);
+            color:#7928ca;
+        }
+
+        .badge-green{
+            background:rgba(0,255,127,0.1);
+            color:#00ff7f;
+        }
+
+        h2{
+            font-size:24px;
+
+            margin-bottom:15px;
+
+            letter-spacing:-0.5px;
+        }
+
+        p{
+            color:#888;
+
+            font-size:15px;
+
+            line-height:1.7;
+
+            margin-bottom:25px;
+        }
+
+        .view-link{
+            color:#fff;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            font-size:14px;
+
+            border-bottom:2px solid #0070f3;
+
+            padding-bottom:4px;
+
+            transition:0.3s;
+        }
+
+        .view-link:hover{
+            letter-spacing:1px;
+
+            border-color:#7928ca;
+        }
 
     </style>
 </head>
@@ -97,30 +195,90 @@
 
     <div class="header">
         <a href="/">← Ana Sayfaya Dön</a>
+
         <h1>Tüm Projeler</h1>
     </div>
 
     <div class="grid">
+
         <div class="project-card">
-            <span class="badge badge-purple">Geliştiriliyor</span>
+            <span class="badge badge-purple">
+                Geliştiriliyor
+            </span>
+
             <h2>B OS</h2>
-            <p>Standartların ötesinde bir işletim sistemi deneyimi. Güçlü, hızlı ve tamamen size özel.</p>
-            <a href="/b-os/" class="view-link">Sistemi İncele</a>
+
+            <p>
+                Standartların ötesinde bir işletim sistemi deneyimi.
+                Güçlü, hızlı ve tamamen size özel.
+            </p>
+
+            <a href="/b-os/" class="view-link">
+                Geliştiriliyor
+            </a>
         </div>
 
         <div class="project-card">
-            <span class="badge badge-green">Yeni</span>
+            <span class="badge badge-green">
+                Yeni
+            </span>
+
             <h2>B Macro</h2>
-            <p>Tekrarlayan görevleri otomatiğe bağlayın. Oyunlarda veya iş akışlarında hızınıza hız katan profesyonel makro çözümü.</p>
-            <a href="/projects/B_Macro" class="view-link">Uygulamayı Gör</a>
+
+            <p>
+                Tekrarlayan görevleri otomatiğe bağlayın.
+                Oyunlarda veya iş akışlarında hızınıza hız katan
+                profesyonel makro çözümü.
+            </p>
+
+            <a href="/projects/B_Macro" class="view-link">
+                Uygulamayı Gör
+            </a>
         </div>
 
         <div class="project-card">
-            <span class="badge badge-blue">ÇIKTI</span>
+            <span class="badge badge-blue">
+                ÇIKTI
+            </span>
+
             <h2>B Store</h2>
-            <p>Yazılım paketlerinizi tek tıkla en güncel sürüme taşıyan, hafif ve kararlı indirme aracı.</p>
-            <a href="/projects/B_Store" class="view-link">Dosyalara Git</a>
+
+            <p>
+                Yazılım paketlerinizi tek tıkla en güncel sürüme taşıyan,
+                hafif ve kararlı indirme aracı.
+            </p>
+
+            <a href="/projects/B_Store" class="view-link">
+                Uygulamaya Git
+            </a>
         </div>
+
+        <div class="project-card game-card">
+
+            <span class="badge badge-blue">
+                OYUN
+            </span>
+
+            <h2>Yakup TV Simulator</h2>
+
+            <p>
+                Trafikte scooter sür,
+                arabaların arasından geç,
+                skor kas ve kaosu yönet.
+
+                Meme kültüründen ilham alan
+                hızlı tempolu arcade scooter deneyimi.
+            </p>
+
+            <a href="/projects/Yakup_Tv_Simulator/"
+               class="view-link">
+
+                Oyunu Aç
+
+            </a>
+
+        </div>
+
     </div>
 
 </body>
