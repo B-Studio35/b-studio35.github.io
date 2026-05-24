@@ -2,198 +2,426 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yakup TV Simulator</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
     }
 
-    body {
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
+    body{
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+
       background:
-        radial-gradient(circle at top, rgba(0,255,255,0.15), transparent 30%),
-        radial-gradient(circle at bottom, rgba(255,0,255,0.12), transparent 30%),
-        #060606;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      radial-gradient(circle at top,
+      rgba(0,255,255,0.14),
+      transparent 30%),
+
+      radial-gradient(circle at bottom,
+      rgba(255,0,255,0.10),
+      transparent 30%),
+
+      #050505;
+
+      color:white;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      position:relative;
     }
 
-    .background-grid {
-      position: absolute;
-      inset: 0;
+    .background-grid{
+      position:absolute;
+      inset:0;
+
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+      background-size:40px 40px;
+
+      z-index:0;
     }
 
-    .back-btn {
-      position: absolute;
-      top: 25px;
-      left: 25px;
-      padding: 12px 22px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      transition: 0.25s ease;
-      z-index: 5;
+    .back-btn{
+      position:absolute;
+
+      top:25px;
+      left:25px;
+
+      padding:12px 22px;
+
+      border-radius:16px;
+
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(12px);
+
+      color:white;
+
+      text-decoration:none;
+
+      transition:0.25s ease;
+
+      z-index:5;
     }
 
-    .back-btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.12);
+    .back-btn:hover{
+      transform:translateY(-3px);
+
+      background:rgba(255,255,255,0.10);
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      width: 90%;
-      max-width: 800px;
-      padding: 60px;
-      border-radius: 34px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(18px);
-      text-align: center;
-      box-shadow: 0 0 60px rgba(0,0,0,0.5);
-      animation: fadeUp 1s ease;
+    .container{
+      position:relative;
+
+      z-index:2;
+
+      width:90%;
+      max-width:860px;
+
+      padding:65px;
+
+      border-radius:36px;
+
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(18px);
+
+      text-align:center;
+
+      box-shadow:
+      0 0 60px rgba(0,0,0,0.5),
+      0 0 120px rgba(0,140,255,0.05);
+
+      animation:fadeUp 1s ease;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 8px 18px;
-      border-radius: 999px;
-      background: rgba(0,255,255,0.12);
-      color: #8fffff;
-      font-size: 14px;
-      margin-bottom: 24px;
-      letter-spacing: 1px;
+    .tag{
+      display:inline-block;
+
+      padding:8px 18px;
+
+      border-radius:999px;
+
+      background:rgba(0,255,255,0.12);
+
+      color:#8fffff;
+
+      font-size:13px;
+
+      margin-bottom:28px;
+
+      letter-spacing:1px;
     }
 
-    h1 {
-      font-size: 72px;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 20px;
+    h1{
+      font-size:78px;
+      font-weight:700;
+
+      line-height:0.95;
+
+      margin-bottom:25px;
     }
 
-    .gradient {
-      background: linear-gradient(90deg, #00e5ff, #ff4dff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .gradient{
+      background:
+      linear-gradient(
+      90deg,
+      #00e5ff,
+      #00a2ff,
+      #ff4dff
+      );
+
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
-    p {
-      font-size: 18px;
-      opacity: 0.8;
-      line-height: 1.7;
-      max-width: 620px;
-      margin: auto;
+    p{
+      max-width:650px;
+
+      margin:auto;
+
+      font-size:18px;
+
+      line-height:1.8;
+
+      opacity:0.78;
     }
 
-    .buttons {
-      margin-top: 45px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    .buttons{
+      margin-top:50px;
+
+      display:flex;
+      flex-direction:column;
+
+      align-items:center;
+
+      gap:22px;
     }
 
     .play-btn,
-    .download-btn {
-      min-width: 220px;
-      padding: 18px 28px;
-      border-radius: 18px;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
-      transition: 0.25s ease;
-      position: relative;
-      overflow: hidden;
+    .download-btn{
+      min-width:280px;
+
+      padding:20px 32px;
+
+      border-radius:22px;
+
+      text-decoration:none;
+
+      color:white;
+
+      font-size:18px;
+      font-weight:600;
+
+      transition:0.25s ease;
+
+      position:relative;
+
+      overflow:visible;
     }
 
-    .play-btn {
-      background: linear-gradient(135deg, #00d9ff, #0077ff);
-      box-shadow: 0 10px 35px rgba(0,140,255,0.35);
+    .play-btn{
+      background:
+      linear-gradient(
+      135deg,
+      #00d9ff,
+      #006eff
+      );
+
+      box-shadow:
+      0 12px 35px rgba(0,140,255,0.30);
     }
 
-    .download-btn {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
+    .play-btn:hover{
+      transform:
+      translateY(-4px)
+      scale(1.02);
     }
 
-    .play-btn:hover,
-    .download-btn:hover {
-      transform: translateY(-4px) scale(1.02);
+    .download-row{
+      display:flex;
+
+      gap:20px;
+
+      justify-content:center;
+
+      flex-wrap:wrap;
     }
 
-    .footer {
-      margin-top: 40px;
-      opacity: 0.45;
-      font-size: 14px;
-      letter-spacing: 1px;
+    .download-btn{
+      background:rgba(255,255,255,0.06);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(10px);
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    .download-btn:hover{
+      transform:
+      translateY(-4px)
+      scale(1.02);
+    }
+
+    .recommended{
+      position:relative;
+
+      background:
+      linear-gradient(
+      135deg,
+      rgba(0,140,255,0.22),
+      rgba(0,225,255,0.08)
+      );
+
+      border:1px solid rgba(0,170,255,0.28);
+
+      box-shadow:
+      0 0 25px rgba(0,140,255,0.12),
+      0 10px 35px rgba(0,140,255,0.15);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .recommended-tag{
+      position:absolute;
+
+      top:-12px;
+      left:16px;
+
+      padding:6px 12px;
+
+      border-radius:999px;
+
+      font-size:10px;
+      font-weight:700;
+
+      letter-spacing:1px;
+
+      color:#7ddcff;
+
+      background:rgba(0,180,255,0.16);
+
+      border:1px solid rgba(0,180,255,0.22);
+
+      backdrop-filter:blur(8px);
+
+      text-transform:uppercase;
+
+      z-index:5;
+    }
+
+    .tooltip{
+      position:absolute;
+
+      bottom:135%;
+      left:50%;
+
+      transform:
+      translateX(-50%)
+      translateY(10px);
+
+      width:280px;
+
+      padding:16px 18px;
+
+      border-radius:18px;
+
+      background:rgba(15,15,15,0.97);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      color:rgba(255,255,255,0.88);
+
+      font-size:14px;
+
+      line-height:1.6;
+
+      opacity:0;
+
+      pointer-events:none;
+
+      transition:0.25s ease;
+
+      backdrop-filter:blur(14px);
+
+      box-shadow:
+      0 15px 40px rgba(0,0,0,0.45);
+
+      z-index:30;
+    }
+
+    .tooltip::after{
+      content:'';
+
+      position:absolute;
+
+      top:100%;
+      left:50%;
+
+      transform:translateX(-50%);
+
+      border-width:10px;
+      border-style:solid;
+
+      border-color:
+      rgba(15,15,15,0.97)
+      transparent
+      transparent
+      transparent;
+    }
+
+    .recommended:hover .tooltip{
+      opacity:1;
+
+      transform:
+      translateX(-50%)
+      translateY(0);
+    }
+
+    .footer{
+      margin-top:42px;
+
+      font-size:14px;
+
+      opacity:0.42;
+
+      letter-spacing:1px;
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(30px);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      to{
+        opacity:1;
+        transform:translateY(0);
       }
     }
 
-    @media(max-width: 700px) {
-      .container {
-        padding: 40px 24px;
+    @media(max-width:700px){
+
+      .container{
+        padding:42px 24px;
       }
 
-      h1 {
-        font-size: 48px;
+      h1{
+        font-size:50px;
       }
 
-      p {
-        font-size: 16px;
+      p{
+        font-size:16px;
       }
 
       .play-btn,
-      .download-btn {
-        width: 100%;
+      .download-btn{
+        width:100%;
+      }
+
+      .download-row{
+        flex-direction:column;
+        width:100%;
       }
     }
+
   </style>
 </head>
 <body>
 
 <div class="background-grid"></div>
 
-<a href="#" class="back-btn">← Geri Dön</a>
+<a href="#" class="back-btn">
+  ← Geri Dön
+</a>
 
 <div class="container">
-  <div class="tag">MEME GAME EXPERIENCE</div>
+
+  <div class="tag">
+    MEME GAME EXPERIENCE
+  </div>
 
   <h1>
     <span class="gradient">Yakup TV</span><br>
@@ -201,28 +429,62 @@
   </h1>
 
   <p>
-    Trafikte scooter sür, arabaların arasından geç, skor kas ve kaosu yönet.
-    Tamamen meme kültüründen ilham alan hızlı tempolu arcade deneyimi.
+    Trafikte scooter sür,
+    arabaların arasından geç,
+    skor kas ve kaosu yönet.
+
+    Tamamen meme kültüründen ilham alan
+    hızlı tempolu arcade deneyimi.
   </p>
 
   <div class="buttons">
-    <a href="https://b-studio35.github.io/projects/Yakup_Tv_Simulator/am%20-%20Kopya%20-%20Kopya%20-%20Kopya%20-%20Kopya.html" class="play-btn">
-      WEBDE OYNA
-    </a>
-    
-      <a href="https://b-studio35.github.io/projects/B_Store/" class="download-btn">
-      B STORE KULLANRAK İNDİR
-    </a>
-  </div>
 
-    <a href="am%20-%20Kopya%20-%20Kopya%20-%20Kopya%20-%20Kopya.html" class="download-btn">
-      İNDİR
+    <a href="https://b-studio35.github.io/projects/Yakup_Tv_Simulator/am%20-%20Kopya%20-%20Kopya%20-%20Kopya%20-%20Kopya.html"
+       class="play-btn">
+
+      WEBDE OYNA
+
     </a>
+
+    <div class="download-row">
+
+      <a href="https://b-studio35.github.io/projects/B_Store/"
+         class="download-btn recommended">
+
+        <span class="recommended-tag">
+          ÖNERİLİR
+        </span>
+
+        B STORE KULLANARAK İNDİR
+
+        <div class="tooltip">
+
+          Güncel kalmak için önerilir.
+          <br><br>
+
+          Yeni sürümler otomatik yayınlanır,
+          hata düzeltmeleri daha hızlı gelir
+          ve en yeni sürüme kolay erişim sağlar.
+
+        </div>
+
+      </a>
+
+      <a href="am%20-%20Kopya%20-%20Kopya%20-%20Kopya%20-%20Kopya.html"
+         class="download-btn">
+
+        DİREKT İNDİR
+
+      </a>
+
+    </div>
+
   </div>
 
   <div class="footer">
     B Studio © 2026
   </div>
+
 </div>
 
 </body>
