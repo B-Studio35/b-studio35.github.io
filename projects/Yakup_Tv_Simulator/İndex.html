@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yakup TV Simulator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top, rgba(0,255,255,0.15), transparent 30%),
+        radial-gradient(circle at bottom, rgba(255,0,255,0.12), transparent 30%),
+        #060606;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .background-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.25s ease;
+      z-index: 5;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 800px;
+      padding: 60px;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0,0,0,0.5);
+      animation: fadeUp 1s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(0,255,255,0.12);
+      color: #8fffff;
+      font-size: 14px;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #00e5ff, #ff4dff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.8;
+      line-height: 1.7;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .buttons {
+      margin-top: 45px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .play-btn,
+    .download-btn {
+      min-width: 220px;
+      padding: 18px 28px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #00d9ff, #0077ff);
+      box-shadow: 0 10px 35px rgba(0,140,255,0.35);
+    }
+
+    .download-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .play-btn:hover,
+    .download-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .footer {
+      margin-top: 40px;
+      opacity: 0.45;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 700px) {
+      .container {
+        padding: 40px 24px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .play-btn,
+      .download-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<a href="#" class="back-btn">← Geri Dön</a>
+
+<div class="container">
+  <div class="tag">MEME GAME EXPERIENCE</div>
+
+  <h1>
+    <span class="gradient">Yakup TV</span><br>
+    Simulator
+  </h1>
+
+  <p>
+    Trafikte scooter sür, arabaların arasından geç, skor kas ve kaosu yönet.
+    Tamamen meme kültüründen ilham alan hızlı tempolu arcade deneyimi.
+  </p>
+
+  <div class="buttons">
+    <a href="#WEB_OYUN_LINKI" class="play-btn">
+      WEBDE OYNA
+    </a>
+    
+  <div class="buttons">
+    <a href="#WEB_OYUN_LINKI" class="play-btn">
+      B Store Kullanarak İndir
+    </a>
+
+    <a href="#INDIR_LINKI" class="download-btn">
+      İNDİR
+    </a>
+  </div>
+
+  <div class="footer">
+    YAKUP TV SIMULATOR © 2026
+  </div>
+</div>
+
+</body>
+</html>
