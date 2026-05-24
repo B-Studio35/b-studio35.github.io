@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-
         :root {
             --bg-color: #0f0f0f;
             --card-bg: #1a1a1a;
@@ -33,27 +32,29 @@
             padding: 50px 0;
         }
 
+        /* Geri Dön Link Stili */
+        .back-link {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        .back-link:hover {
+            background-color: #555;
+        }
+
         .logo {
             width: 110px;
             display: block;
             margin: 0 auto 20px;
             filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
         }
-        {
-            <button onclick="history.back()" style="
-        background-color: #333; 
-        color: #fff; 
-        border: none; 
-        padding: 10px 20px; 
-        border-radius: 4px; 
-        font-family: sans-serif; 
-        cursor: pointer;
-        transition: background 0.3s;
-        ">
-            Geri Dön
-        </button>
-        }
-        
+
         h1 {
             text-align: center;
             font-size: 2.7rem;
@@ -133,7 +134,6 @@
             color: #666;
             font-size: 0.95rem;
         }
-
     </style>
 </head>
 
@@ -141,7 +141,10 @@
 
     <div class="container">
 
-        <!-- LOGO -->
+        <a href="https://b-studio35.github.io/projects/" class="back-link">
+            <i class="fas fa-arrow-left"></i> Geri Dön
+        </a>
+
         <img src="logo.png" class="logo">
 
         <h1>B Store v1.4</h1>
@@ -154,66 +157,43 @@
 
             <div class="feature-card">
                 <i class="fas fa-bolt"></i>
-
                 <h3>Ultra Hızlı</h3>
-
-                <p>
-                    Optimize edilmiş altyapı sayesinde uygulamalarınızı hızlı şekilde indirin ve yönetin.
-                </p>
+                <p>Optimize edilmiş altyapı sayesinde uygulamalarınızı hızlı şekilde indirin ve yönetin.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-layer-group"></i>
-
                 <h3>Modern Arayüz</h3>
-
-                <p>
-                    Minimal ve karanlık tema destekli şık kullanıcı arayüzü ile rahat kullanım deneyimi.
-                </p>
+                <p>Minimal ve karanlık tema destekli şık kullanıcı arayüzü ile rahat kullanım deneyimi.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-download"></i>
-
                 <h3>Kolay İndirme</h3>
-
-                <p>
-                    Tek tıkla uygulama kurulum sistemi sayesinde dosyalarınıza anında erişin.
-                </p>
+                <p>Tek tıkla uygulama kurulum sistemi sayesinde dosyalarınıza anında erişin.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-shield-alt"></i>
-
                 <h3>Güvenli Sistem</h3>
-
-                <p>
-                    Güvenli bağlantı ve stabil yapı ile sorunsuz uygulama yönetimi.
-                </p>
+                <p>Güvenli bağlantı ve stabil yapı ile sorunsuz uygulama yönetimi.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-rocket"></i>
-
                 <h3>Performans Odaklı</h3>
-
-                <p>
-                    Düşük sistem kullanımı sayesinde hızlı ve akıcı mağaza deneyimi sunar.
-                </p>
+                <p>Düşük sistem kullanımı sayesinde hızlı ve akıcı mağaza deneyimi sunar.</p>
             </div>
 
         </div>
 
         <div class="download-footer">
-
             <a href="B Store.zip" class="btn-download">
                 <i class="fas fa-download"></i> B Store İndir
             </a>
-
             <div class="version">
                 1.4 • Windows
             </div>
-
         </div>
 
     </div>
