@@ -1,17 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B Store | Özellikler</title>
-
+    <title>B Studio Macro | Özellikler</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
         :root {
             --bg-color: #0f0f0f;
             --card-bg: #1a1a1a;
-            --accent-color: #ffffff;
+            --accent-color: #007bff;
             --text-color: #ffffff;
         }
 
@@ -41,25 +40,18 @@
             border-radius: 4px;
             text-decoration: none;
             font-family: sans-serif;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             transition: background 0.3s;
         }
         .back-link:hover {
-            background-color: #555;
-        }
-
-        .logo {
-            width: 110px;
-            display: block;
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+            background-color: #444;
         }
 
         h1 {
             text-align: center;
-            font-size: 2.7rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(to right, #ffffff, #9f9f9f);
+            background: linear-gradient(to right, #007bff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -68,7 +60,6 @@
             text-align: center;
             color: #888;
             margin-bottom: 50px;
-            font-size: 1.05rem;
         }
 
         .features-grid {
@@ -88,7 +79,7 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: #666;
+            border-color: var(--accent-color);
         }
 
         .feature-card i {
@@ -113,8 +104,8 @@
         }
 
         .btn-download {
-            background: white;
-            color: black;
+            background: var(--accent-color);
+            color: white;
             padding: 15px 40px;
             text-decoration: none;
             border-radius: 50px;
@@ -125,77 +116,58 @@
         }
 
         .btn-download:hover {
-            box-shadow: 0 0 20px rgba(255,255,255,0.25);
-            transform: translateY(-3px);
-        }
-
-        .version {
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.95rem;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+            background: #0056b3;
         }
     </style>
 </head>
-
 <body>
 
     <div class="container">
-
         <a href="https://b-studio35.github.io/projects/" class="back-link">
             <i class="fas fa-arrow-left"></i> Geri Dön
         </a>
 
-        <img src="logo.png" class="logo">
-
-        <h1>B Store v1.4</h1>
-
-        <p class="subtitle">
-            Modern ve hızlı uygulama mağazası deneyimi.
-        </p>
+        <h1>B Studio Macro v1.0</h1>
+        <p class="subtitle">Performans ve Özelleştirmenin Buluştuğu Nokta</p>
 
         <div class="features-grid">
-
             <div class="feature-card">
                 <i class="fas fa-bolt"></i>
-                <h3>Ultra Hızlı</h3>
-                <p>Optimize edilmiş altyapı sayesinde uygulamalarınızı hızlı şekilde indirin ve yönetin.</p>
+                <h3>Ultra Hızlı Yanıt</h3>
+                <p>Python ve C++ hibrit yapısı sayesinde gecikme süresi (input lag) minimuma indirildi. En hızlı tepkiyi siz verin.</p>
             </div>
 
             <div class="feature-card">
-                <i class="fas fa-layer-group"></i>
+                <i class="fas fa-palette"></i>
                 <h3>Modern Arayüz</h3>
-                <p>Minimal ve karanlık tema destekli şık kullanıcı arayüzü ile rahat kullanım deneyimi.</p>
+                <p>CustomTkinter kullanılarak geliştirilen şık ve karanlık mod uyumlu arayüz ile kullanım kolaylığı.</p>
             </div>
 
             <div class="feature-card">
-                <i class="fas fa-download"></i>
-                <h3>Kolay İndirme</h3>
-                <p>Tek tıkla uygulama kurulum sistemi sayesinde dosyalarınıza anında erişin.</p>
+                <i class="fas fa-save"></i>
+                <h3>Akıllı JSON Kayıt</h3>
+                <p>Ayarlarınızı her seferinde baştan yapmayın. Ayar dosyalarınız otomatik olarak JSON formatında kaydedilir.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-shield-alt"></i>
-                <h3>Güvenli Sistem</h3>
-                <p>Güvenli bağlantı ve stabil yapı ile sorunsuz uygulama yönetimi.</p>
+                <h3>Güvenli ve Hafif</h3>
+                <p>Sistemi yormayan hafif kod yapısı. 120 GB SSD dostu, düşük kaynak tüketimi.</p>
             </div>
 
             <div class="feature-card">
-                <i class="fas fa-rocket"></i>
-                <h3>Performans Odaklı</h3>
-                <p>Düşük sistem kullanımı sayesinde hızlı ve akıcı mağaza deneyimi sunar.</p>
+                <i class="fas fa-cog"></i>
+                <h3>Tam Kişiselleştirme</h3>
+                <p>Makro hızlarını, gecikme sürelerini ve tuş atamalarını tamamen kendi oyun tarzınıza göre ayarlayın.</p>
             </div>
-
         </div>
 
         <div class="download-footer">
-            <a href="B Store.zip" class="btn-download">
-                <i class="fas fa-download"></i> B Store İndir
+            <a href="B Macro.zip" class="btn-download" download>
+                <i class="fas fa-file-archive"></i> Hemen İndir
             </a>
-            <div class="version">
-                1.4 • Windows
-            </div>
         </div>
-
     </div>
 
 </body>
