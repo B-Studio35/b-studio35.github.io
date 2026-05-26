@@ -182,6 +182,35 @@ document.addEventListener('keyup', (e) => {
   keys[e.key] = false;
 });
 
+// TOUCH CONTROLS
+document.addEventListener('touchstart', (e) => {
+  const touchX = e.touches[0].clientX;
+
+  if (touchX < window.innerWidth / 2) {
+    keys['ArrowLeft'] = true;
+  } else {
+    keys['ArrowRight'] = true;
+  }
+});
+
+document.addEventListener('touchmove', (e) => {
+  const touchX = e.touches[0].clientX;
+
+  keys['ArrowLeft'] = false;
+  keys['ArrowRight'] = false;
+
+  if (touchX < window.innerWidth / 2) {
+    keys['ArrowLeft'] = true;
+  } else {
+    keys['ArrowRight'] = true;
+  }
+});
+
+document.addEventListener('touchend', () => {
+  keys['ArrowLeft'] = false;
+  keys['ArrowRight'] = false;
+});
+
 // ENEMIES
 const cars = [];
 
