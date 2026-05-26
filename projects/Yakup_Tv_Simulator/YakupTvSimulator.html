@@ -11,6 +11,7 @@
       overflow: hidden;
       background: black;
       font-family: Arial, sans-serif;
+      touch-action: none;
     }
 
     #ui {
@@ -48,7 +49,7 @@
   <h1 style="font-size:64px; margin-bottom:20px;">Yakup Tv Simulator</h1>
   <button id="startBtn" style="padding:20px 40px; font-size:28px; cursor:pointer; border:none; border-radius:14px;">OYUNA BAŞLA</button>
   <div style="margin-top:20px; font-size:24px; opacity:0.8;">
-    Kontroller: A / D veya ← →
+    Kontroller: A / D veya ← → veya Dokunmatik
   </div>
 </div>
 
@@ -60,8 +61,8 @@
     YENİDEN BAŞLAT
   </button>
 </div>
-  <div style="font-size:24px; margin-top:10px;">F5 ile yeniden başlat</div>
-</div>
+
+<div style="font-size:24px; margin-top:10px;">F5 ile yeniden başlat</div>
 
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js';
@@ -244,6 +245,7 @@ const highText = document.getElementById('highscore');
 
 let highScore = localStorage.getItem('scooterHighScore') || 0;
 highText.innerText = highScore;
+
 let gameOver = false;
 let gameStarted = false;
 
@@ -260,13 +262,14 @@ function endGame() {
   document.getElementById('finalHigh').innerText = 'High Score: ' + highScore;
 }
 
-// ANIMATE
+// START GAME
 document.getElementById('startBtn').addEventListener('click', () => {
   gameStarted = true;
   document.getElementById('menu').style.display = 'none';
   document.getElementById('ui').style.display = 'block';
 });
 
+// ANIMATE
 function animate() {
   requestAnimationFrame(animate);
 
