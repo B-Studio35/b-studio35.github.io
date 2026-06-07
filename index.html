@@ -12,6 +12,14 @@
             background-color: #050505; 
             color: #fff; 
             overflow-x: hidden;
+            /* Yumuşak geçiş animasyonu */
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Light Mode Değişkenleri */
+        body.light-mode {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
         }
 
         /* ŞAŞIRTICI ARKA PLAN: Neon Aurora Efekti */
@@ -22,6 +30,12 @@
                 radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 40%);
             z-index: -1;
             filter: blur(80px);
+            transition: opacity 0.5s ease;
+        }
+        body.light-mode .aurora-bg {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 112, 243, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.08) 0%, transparent 40%);
         }
 
         /* Navbar - Ultra Modern Cam *//* ŞAŞIdsadwniggan Aurora Efekti */
@@ -30,14 +44,71 @@
             padding: 20px 10%; background: rgba(5, 5, 5, 0.5);
             backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.05);
             position: sticky; top: 0; z-index: 100;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 1px; }
+        .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.5s ease; }
+        body.light-mode .logo { color: #1d1d1f; }
         .logo span { color: #0070f3; text-shadow: 0 0 15px rgba(0,112,243,0.5); }
 
-        nav ul { list-style: none; display: flex; gap: 35px; }
+        nav { display: flex; align-items: center; gap: 35px; }
+        nav ul { list-style: none; display: flex; gap: 35px; align-items: center; }
         nav ul li a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
         nav ul li a:hover { color: #fff; text-shadow: 0 0 8px #fff; }
+        body.light-mode nav ul li a { color: #555; }
+        body.light-mode nav ul li a:hover { color: #000; text-shadow: 0 0 8px rgba(0,0,0,0.2); }
+
+        /* Gelişmiş Light/Dark Switch Tasarımı */
+        .theme-switch-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s ease;
+        }
+        body.light-mode .theme-switch-container {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        .theme-switch-container svg {
+            width: 16px;
+            height: 16px;
+            fill: #888;
+            transition: 0.3s ease;
+        }
+        .theme-icon-sun { opacity: 0.4; }
+        .theme-icon-moon { opacity: 1; fill: #7928ca !important; filter: drop-shadow(0 0 5px #7928ca); }
+        
+        body.light-mode .theme-icon-sun { opacity: 1; fill: #ffaa00 !important; filter: drop-shadow(0 0 5px #ffaa00); }
+        body.light-mode .theme-icon-moon { opacity: 0.4; fill: #555 !important; filter: drop-shadow(none); }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        .theme-switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #222; transition: .4s ease; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+            background-color: #fff; transition: .4s ease; border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        input:checked + .slider { background-color: #0070f3; }
+        input:checked + .slider:before { transform: translateX(18px); }
+        body.light-mode .slider { background-color: #ddd; }
+        body.light-mode input:checked + .slider { background-color: #0070f3; }
 
         /* Ana Bölüm - Hero */
         .hero {
@@ -52,9 +123,16 @@
             background: linear-gradient(to right, #fff 30%, #0070f3 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            transition: 0.5s ease;
+        }
+        body.light-mode .hero h1 {
+            background: linear-gradient(to right, #000 30%, #0070f3 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
         }
 
-        .hero p { color: #777; font-size: 1.25rem; max-width: 650px; margin-bottom: 45px; letter-spacing: 0.5px; }
+        .hero p { color: #777; font-size: 1.25rem; max-width: 650px; margin-bottom: 45px; letter-spacing: 0.5px; transition: color 0.5s ease; }
+        body.light-mode .hero p { color: #555; }
 
         /* Dinamik Neon Buton */
         .btn-neon {
@@ -62,13 +140,23 @@
             text-decoration: none; border-radius: 12px; font-weight: 700;
             border: 1px solid rgba(0, 112, 243, 0.5);
             box-shadow: inset 0 0 15px rgba(0, 112, 243, 0.2), 0 0 20px rgba(0, 112, 243, 0.2);
-            transition: 0.4s; text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.4s ease; text-transform: uppercase; letter-spacing: 2px;
         }
         .btn-neon:hover { 
             background: #0070f3; 
             box-shadow: 0 0 40px rgba(0, 112, 243, 0.6);
             transform: scale(1.05);
             border-color: #0070f3;
+        }
+        body.light-mode .btn-neon {
+            color: #0070f3;
+            border-color: rgba(0, 112, 243, 0.4);
+            box-shadow: inset 0 0 15px rgba(0, 112, 243, 0.05), 0 0 10px rgba(0, 112, 243, 0.05);
+        }
+        body.light-mode .btn-neon:hover {
+            color: #fff;
+            background: #0070f3;
+            box-shadow: 0 0 30px rgba(0, 112, 243, 0.4);
         }
 
         /* Proje Kartları - Cam Tasarım */
@@ -80,8 +168,12 @@
         .card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 45px; border-radius: 28px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 45px; border-radius: 28px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.5s ease, border-color 0.5s ease;
             position: relative; overflow: hidden;
+        }
+        body.light-mode .card {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
@@ -89,14 +181,83 @@
             border-color: rgba(121, 40, 202, 0.5); /* Üzerine gelince mor ışık */
             transform: translateY(-15px) rotateX(5deg);
         }
+        body.light-mode .card:hover {
+            background: rgba(0, 0, 0, 0.04);
+            border-color: rgba(121, 40, 202, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
 
-        .card h3 { font-size: 26px; margin-bottom: 15px; color: #fff; }
+        .card h3 { font-size: 26px; margin-bottom: 15px; color: #fff; transition: color 0.5s ease; }
+        body.light-mode .card h3 { color: #1d1d1f; }
+        
         .card .badge { 
             display: inline-block; padding: 5px 15px; border-radius: 30px; 
             font-size: 11px; font-weight: 700; margin-bottom: 15px;
             background: rgba(121, 40, 202, 0.2); color: #7928ca; text-transform: uppercase;
         }
-        <link rel="manifest" href="manifest.json">
+        
+        .card p { color: #888; line-height: 1.7; transition: color 0.5s ease; }
+        body.light-mode .card p { color: #555; }
+
+        /* ==========================================
+           B STUDIO AI ASİSTAN STİLLERİ
+        ========================================== */
+        .ai-widget {
+            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+        }
+        .ai-btn {
+            width: 60px; height: 60px; border-radius: 50%; background: #0070f3;
+            box-shadow: 0 0 20px rgba(0, 112, 243, 0.4); border: none; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; transition: 0.3s;
+        }
+        .ai-btn:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 0 30px rgba(0, 112, 243, 0.6); }
+        .ai-btn svg { width: 28px; height: 28px; fill: #fff; }
+        
+        .ai-box {
+            position: absolute; bottom: 80px; right: 0; width: 350px; height: 450px;
+            background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(25px); border-radius: 24px; display: flex; flex-direction: column;
+            overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        body.light-mode .ai-box {
+            background: rgba(255, 255, 255, 0.8); border-color: rgba(0,0,0,0.08);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .ai-box.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        
+        .ai-header {
+            padding: 18px 20px; background: rgba(0, 112, 243, 0.1); border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; gap: 10px;
+        }
+        body.light-mode .ai-header { border-bottom-color: rgba(0,0,0,0.05); }
+        .ai-header-dot { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; }
+        .ai-header h4 { font-size: 15px; font-weight: 700; color: #fff; }
+        body.light-mode .ai-header h4 { color: #1d1d1f; }
+        .ai-header span { font-size: 11px; color: #888; }
+        
+        .ai-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .msg { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; }
+        .msg.bot { background: rgba(255,255,255,0.04); color: #ddd; align-self: flex-start; border-radius: 4px 16px 16px 16px; }
+        body.light-mode .msg.bot { background: rgba(0,0,0,0.04); color: #333; }
+        .msg.user { background: #0070f3; color: #fff; align-self: flex-end; border-radius: 16px 16px 4px 16px; }
+        
+        .ai-input-area { padding: 15px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; }
+        body.light-mode .ai-input-area { border-top-color: rgba(0,0,0,0.05); }
+        .ai-input-area input {
+            flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            padding: 12px 16px; border-radius: 12px; color: #fff; font-size: 13px; outline: none; transition: 0.3s;
+        }
+        body.light-mode .ai-input-area input { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); color: #1d1d1f; }
+        .ai-input-area input:focus { border-color: #0070f3; background: rgba(0,112,243,0.02); }
+        .ai-send {
+            background: #0070f3; border: none; padding: 0 16px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .ai-send:hover { background: #0056b3; }
+        .ai-send svg { width: 16px; height: 16px; fill: #fff; }
+    </style>
+    <link rel="manifest" href="manifest.json">
 
 <script>
   if ('serviceWorker' in navigator) {
@@ -107,8 +268,6 @@
     });
   }
 </script>
-        .card p { color: #888; line-height: 1.7; }
-    </style>
 </head>
 <body>
     <div class="aurora-bg"></div>
@@ -121,6 +280,17 @@
                 <li><a href="about">Hakkında</a></li>
                 <li><a href="https://github.com/b-studio35" target="_blank">GitHub</a></li>
             </ul>
+            <!-- Light/Dark Mode Switch -->
+            <div class="theme-switch-container">
+                <!-- Sun Icon -->
+                <svg class="theme-icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0-5c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1c0 .55.45 1 1 1zm0 16c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1s1-.45 1-1v-1c0-.55-.45-1-1-1zm8.66-11.66c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41zm-14.14 14.14c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41zM23 11h-1c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1s-.45-1-1-1zM4 12c0-.55-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm16.66 4.66c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41zM5.66 5.66c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41z"/></svg>
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <!-- Moon Icon -->
+                <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M12.3 22h-.1c-5.5 0-10-4.5-10-10 0-4.8 3.5-8.9 8.2-9.8.6-.1 1.2.3 1.3.9.1.6-.3 1.2-.9 1.3-3.3.7-5.6 3.6-5.6 7 0 3.9 3.1 7 7 7 3.4 0 6.3-2.3 7-5.6.1-.6.7-1 1.3-.9.6.1 1 .7.9 1.3C21.2 18.5 17.1 22 12.3 22z"/></svg>
+            </div>
         </nav>
     </header>
 
@@ -143,5 +313,154 @@
         </div>
     </div>
 
+    <!-- B STUDIO AI ASİSTAN HTML PANELİ -->
+    <div class="ai-widget">
+        <button class="ai-btn" id="ai-button">
+            <svg viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 14h-2v2h2v-2zm0-10h-2v8h2V6z"/></svg>
+        </button>
+        <div class="ai-box" id="ai-box">
+            <div class="ai-header">
+                <div class="ai-header-dot"></div>
+                <div>
+                    <h4>B Studio AI</h4>
+                    <span id="ai-status">Çevrimiçi Asistan</span>
+                </div>
+            </div>
+            <div class="ai-messages" id="ai-messages">
+                <div class="msg bot">Selam! Ben B Studio yapay zeka asistanı. Sana projelerimiz, B Store veya B OS hakkında nasıl yardımcı olabilirim kanka?</div>
+            </div>
+            <div class="ai-input-area">
+                <input type="text" id="ai-input" placeholder="Bir şeyler sor veya 'help' yaz...">
+                <button class="ai-send" id="ai-send">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const savedTheme = localStorage.getItem('theme');
+
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.add('light-mode');
+                themeToggle.checked = true;
+            } else {
+                document.body.classList.remove('light-mode');
+                themeToggle.checked = false;
+            }
+        }
+
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            applyTheme(systemPrefersLight ? 'light' : 'dark');
+        }
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        /* ==========================================
+           B STUDIO HYBRID AI MANTIĞI
+        ========================================== */
+        const aiButton = document.getElementById('ai-button');
+        const aiBox = document.getElementById('ai-box');
+        const aiInput = document.getElementById('ai-input');
+        const aiSend = document.getElementById('ai-send');
+        const aiMessages = document.getElementById('ai-messages');
+        const aiStatus = document.getElementById('ai-status');
+
+        let webAISession = null;
+
+        // Tarayıcı içi Gerçek Yapay Zekayı (Built-in Web AI) başlatmayı dene
+        async function initWebAI() {
+            try {
+                if (window.ai && window.ai.assistant) {
+                    aiStatus.innerText = "Canlı Web AI Aktif";
+                    webAISession = await window.ai.assistant.create({
+                        systemPrompt: "Sen B Studio yazılım stüdyosunun fırlama, zeki ve profesyonel yapay zeka asistanısın. Kullanıcılara 'kanka' diye hitap et. B Store çıktı, B OS ise yakında çıkacak."
+                    });
+                }
+            } catch (e) {
+                console.log("Yerleşik Web AI başlatılamadı, statik moda geçiliyor.");
+            }
+        }
+        initWebAI();
+
+        aiButton.addEventListener('click', () => {
+            aiBox.classList.toggle('active');
+        });
+
+        async function sendMessage() {
+            const userText = aiInput.value.trim();
+            const query = userText.toLowerCase();
+            if (!userText) return;
+
+            appendMessage(userText, 'user');
+            aiInput.value = '';
+
+            // Durum Göstergesi (Yazıyor...)
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('msg', 'bot');
+            typingDiv.innerText = "...";
+            aiMessages.appendChild(typingDiv);
+            aiMessages.scrollTop = aiMessages.scrollHeight;
+
+            setTimeout(async () => {
+                let response = "";
+
+                // Öncelikli Statik Filtreler (Stüdyo bilgileri için en doğrusu)
+                if (query.includes('help') || query.includes('yardım')) {
+                    response = "Şunları sorabilirsin: 'B Store nedir?', 'B OS ne zaman çıkacak?', 'Projeler neler?', 'İletişim' ya da kafana göre takıl!";
+                } else if (query.includes('b store') || query.includes('store')) {
+                    response = "B Store; yazılım dünyasında hızın, kesintisiz güncellemelerin ve maksimum optimizasyonun yeni adı kanka. Şu an yayında, inceleyebilirsin!";
+                } else if (query.includes('b os') || query.includes('os') || query.includes('işletim sistemi')) {
+                    response = "B OS; standartları tamamen yıkan bir arayüze ve benzersiz bir performansa sahip yeni nesil işletim sistemi simülasyonumuz kanka. Çok yakında çıkıyor!";
+                } else if (query.includes('github') || query.includes('kod')) {
+                    response = "Açık kaynak kodlarımızı ve tüm çalışmalarımızı yukarıdaki 'GitHub' butonuna basarak profilimizden inceleyebilirsin.";
+                } else if (query.includes('selam') || query.includes('merhaba') || query.includes('sa')) {
+                    response = "Aleykümselam kanka, hoş geldin! B Studio evrenindesin, nasıl yardımcı olayım?";
+                } 
+                // Eğer statik kalıplara uymuyorsa ve GERÇEK YAPAY ZEKA aktifse devreye sok
+                else if (webAISession) {
+                    try {
+                        response = await webAISession.prompt(userText);
+                    } catch (err) {
+                        response = "Gerçek yapay zeka motorunda bir hata oluştu kanka, statik moda geçiyorum. Projelerimizi yukarıdan inceleyebilirsin!";
+                    }
+                } 
+                // İkisi de yoksa varsayılan cevap
+                else {
+                    response = "Anlayamadım kanka ama B Store çıktı, B OS ise yolda! Detaylar için yukarıdaki linkleri kurcalayabilirsin.";
+                }
+
+                typingDiv.remove(); // Yazıyor efektini kaldır
+                appendMessage(response, 'bot');
+            }, 600);
+        }
+
+        function appendMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('msg', sender);
+            msgDiv.innerText = text;
+            aiMessages.appendChild(msgDiv);
+            aiMessages.scrollTop = aiMessages.scrollHeight;
+        }
+
+        aiSend.addEventListener('click', sendMessage);
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 </body>
 </html>
